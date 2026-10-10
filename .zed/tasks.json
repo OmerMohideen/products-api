@@ -1,0 +1,79 @@
+[
+  {
+    "label": "build",
+    "command": "mvn -q package -DskipTests",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "always",
+    "hide": "on_success"
+  },
+  {
+    "label": "run",
+    "command": "mvn spring-boot:run",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "use_new_terminal": false,
+    "allow_concurrent_runs": true,
+    "reveal": "always",
+    "hide": "never"
+  },
+  {
+    "label": "run: jar",
+    "command": "mvn -q package -DskipTests && java -jar target/*.jar",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "use_new_terminal": false,
+    "allow_concurrent_runs": true,
+    "reveal": "always",
+    "hide": "never"
+  },
+  {
+    "label": "stop",
+    "command": "pkill -f products-api || fuser -k 8080/tcp || true",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "no_focus",
+    "hide": "on_success"
+  },
+  {
+    "label": "test: get all",
+    "command": "curl -s http://localhost:8080/products; echo",
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "always",
+    "hide": "never"
+  },
+  {
+    "label": "test: get by id",
+    "command": "curl -s http://localhost:8080/products/1; echo",
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "always",
+    "hide": "never"
+  },
+  {
+    "label": "test: create",
+    "command": "curl -s -X POST http://localhost:8080/products -H \"Content-Type: application/json\" -d '{\"name\":\"Keyboard\",\"price\":59.99}'; echo",
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "always",
+    "hide": "never"
+  },
+  {
+    "label": "test: delete by id",
+    "command": "curl -s -X DELETE http://localhost:8080/products/1 -i",
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "always",
+    "hide": "never"
+  },
+  {
+    "label": "clean",
+    "command": "mvn clean",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "no_focus",
+    "hide": "on_success"
+  }
+]
