@@ -9,4 +9,26 @@ class Product {
     + getName() : String
     + getPrice() : double
 }
+
+class ProductService {
+    - products : List<Product>
+    - nextId : Long
+    + getProducts() : List<Product>
+    + getProductById(Long id) : Product
+    + addProduct(Product product) : Product
+    + deleteProduct(Long id) : void
+    + getProductsByName(String name) : List<Product>
+}
+
+class ProductController {
+    - productService : ProductService
+    + getProduct(Long id) : Product
+    + getProducts() : List<Product>
+    + addProduct(Product product) : Product
+    + deleteProduct(Long id) : void
+    + getProductsByName(String name) : List<Product>
+}
+
+ProductController ..> ProductService
+ProductService --> Product
 @enduml
